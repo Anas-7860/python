@@ -1,5 +1,10 @@
 name = input("what is your name ? ")
 print(name+"if you want to order something , here is the menu :" )
+print("MENU :-\nsamosa\nidli\ndosa\nburger\neggroll")
 order = input("Write your order here : ")
 Address = input("write your address here : ")
+quantity = input("how many of "+order+" do you like :")
+price = 4;
+total = price * int(quantity)
 print("Thank you ! "+name+"\n"+"your order , which is "+order+" is confirmed\n"+"your order will arrive on "+Address)
+print("you need to pay : "+str(total)+"$")
