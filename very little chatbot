@@ -1,5 +1,14 @@
 name = input("what is your name ? ")
-print(name+"if you want to order something , here is the menu :" )
+if name == "aadi" or name == "zishan" or name == "Aadi" or name == "Zishan":
+  evil_status = input("Are you evil ? ")
+  if evil_status == "Yes" or "yes" or "YES":
+    Gdeed_count = int(input("How many good deeds have you done today ? "))
+    if Gdeed_count < 4:
+      print(name+" Jaldi waha se hato......!")
+      exit()
+    else:  print("you can come in "+name+" you are now good !")
+    
+print(name+" if you want to order something , here is the menu :" )
 print("MENU :-\nsamosa\nidli\ndosa\nburger\neggroll")
 order = input("Write your order here : ")
 Address = input("write your address here : ")
