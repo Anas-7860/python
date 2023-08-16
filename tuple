@@ -1,0 +1,6 @@
+
+info = ("Anas",19,"Chadigarh University")   # tuple
+(name,age,study_at) = info  # can do multiple declaration also can do with list
+print(name)
+print(age)
+print(study_at)
