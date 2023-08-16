@@ -1,0 +1,8 @@
+# Deleting elements from the Lists
+list = ["A","B","C","D","E"]
+# list.clear()           it deletes all elements in the lists 
+
+list.remove("A")         # removed A elements from the lists 
+list.pop(2)              # removing by using index not value
+print(list.pop(2))       # deleted item returns
+print(list)
