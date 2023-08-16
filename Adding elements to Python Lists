@@ -1,0 +1,8 @@
+# methods to add new elements to the list
+list = ["book", "pen", "laptop", "hankercheif"]  # list
+list.append("pokemon")                   #adding pokemon to the list
+list.extend(["money","paper"])        # adding more than one in the list 
+list = list + ["eatable"]           # adding one list to another list
+list.insert(1,"top")       # inseting element at wished index location
+list.insert(-2,"wow")     # inserting element using negative index(reverse)
+print(list)   
