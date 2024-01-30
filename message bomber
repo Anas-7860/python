@@ -1,0 +1,8 @@
+import pyautogui as p
+import time
+time.sleep(5)
+for i in range(500):
+    # can write anything to prank friends
+    p.typewrite("hello")
+    p.press("enter")
+    
