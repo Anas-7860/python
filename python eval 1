@@ -1,0 +1,53 @@
+# evaliuation Question 2.
+
+cart = []
+def add_to_cart(s_no,name,price,quantity):
+    cart.append({"product_no":s_no,"product_name":name,"product_price":price,"product_quantity":quantity})
+
+
+def remove_from_cart(cart,id):
+    cart.remove(list[id-1])
+
+
+def total_bill(cart):
+    total_bill = 0
+    for i in cart:
+        total_bill += i['product_price'] * i['product_quantity']
+
+    return total_bill    
+
+
+def search_cart(id):
+    for item in cart:
+        if item['product_no'] == id:
+            return item['product_name']
+        else:
+            return None    
+ 
+    
+def cart_contains(cart):
+     print("========================")
+     print("final cart items :-")
+     count = 1
+
+     for items in cart:
+         print("Product Number :",count)
+         print("---------------------------------")
+         print("product :",items['product_name'])
+         print("product ID :",items['product_no'])
+         print("Price :",items['product_price'])
+         print("quantity :",items['product_quantity'])
+         print("---------------------------------\n")
+         count+=1
+
+
+
+add_to_cart(1,"Lays",20,5)
+add_to_cart(2,"football",500,1)
+add_to_cart(2,"Wheat",250,1)
+add_to_cart(2,"data cable",200,1)
+add_to_cart(2,"ram 8gb",2000,1)
+
+cart_contains(cart)
+print("Total bill for Your Cart is : ",total_bill(cart))
+
