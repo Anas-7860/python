@@ -1,0 +1,28 @@
+# Evaluation question 1.
+def assign_flight(flight_no,assign_to):
+    assign_to['flight'] = flight_no
+    return assign_to
+
+
+def Show_details(crew):
+    print("=================================")
+    print("Crew Member details:-")
+    print("Name            : ",crew['name'])
+    print("Employee ID     : ",crew['emp_id'])
+    print("Position        : ",crew['pos'])
+    print("Flight Assigned : ",crew['flight'])
+    print("=================================\n\n")
+
+crew_1 = {"emp_id":12871,"name":"Anas Khan","pos":"Captain","flight":'none'}
+crew_2 = {"emp_id":12858,"name":"Sammarpreet Singh","pos":"Pilot","flight":'none'}
+crew_3 = {"emp_id":12849,"name":"Deepak Kumar","pos":"Co-pilot","flight":'none'}
+crew_4 = {"emp_id":12945,"name":"Aashish kumar","pos":"Air-Host","flight":'none'}
+
+assign_flight("BA427",crew_1)      # updating information via function
+Show_details(crew_1)               # showing details
+assign_flight("E34D7",crew_2)
+Show_details(crew_2)
+assign_flight("D6567",crew_3)
+Show_details(crew_3)
+assign_flight("GH765",crew_4)
+Show_details(crew_4)
