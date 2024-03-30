@@ -1,0 +1,70 @@
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn.cluster import KMeans
+from sklearn.linear_model import LinearRegression
+from sklearn.preprocessing import StandardScaler
+import seaborn as sns
+
+# Generate synthetic traffic data
+np.random.seed(0)
+num_samples = 1000
+speeds = np.random.randint(20, 80, num_samples)  # Random vehicle speeds in km/h
+volumes = np.random.randint(50, 200, num_samples)  # Random traffic volumes in vehicles/hour
+
+# Create a DataFrame to store the traffic data
+traffic_df = pd.DataFrame({'Speed': speeds, 'Volume': volumes})
+
+# Visualize the distribution of traffic speeds and volumes
+sns.scatterplot(data=traffic_df, x='Speed', y='Volume')
+plt.title('Traffic Speed vs Volume')
+plt.xlabel('Speed (km/h)')
+plt.ylabel('Volume (vehicles/hour)')
+plt.show()
+
+# Perform clustering to identify traffic flow patterns
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(traffic_df[['Speed', 'Volume']])
+kmeans = KMeans(n_clusters=3, random_state=0)
+traffic_df['Cluster'] = kmeans.fit_predict(scaled_data)
+
+# Visualize clustered traffic data
+sns.scatterplot(data=traffic_df, x='Speed', y='Volume', hue='Cluster', palette='Set1')
+plt.title('Clustered Traffic Data')
+plt.xlabel('Speed (km/h)')
+plt.ylabel('Volume (vehicles/hour)')
+plt.legend(title='Cluster')
+plt.show()
+
+# Analyze traffic patterns within each cluster
+cluster_centers = scaler.inverse_transform(kmeans.cluster_centers_)
+for i, center in enumerate(cluster_centers):
+    cluster_data = traffic_df[traffic_df['Cluster'] == i]
+    avg_speed = cluster_data['Speed'].mean()
+    avg_volume = cluster_data['Volume'].mean()
+    print(f'Cluster {i+1}: Average Speed = {avg_speed:.2f} km/h, Average Volume = {avg_volume:.2f} vehicles/hour')
+
+# Implement optimization strategies based on traffic analysis
+for cluster in range(kmeans.n_clusters):
+    cluster_data = traffic_df[traffic_df['Cluster'] == cluster]
+    X = cluster_data[['Speed']]
+    y = cluster_data['Volume']
+
+    # Fit linear regression model to predict volume based on speed
+    regression_model = LinearRegression()
+    regression_model.fit(X, y)
+
+    # Generate optimized traffic signal timings based on regression model
+    min_speed = X['Speed'].min()
+    max_speed = X['Speed'].max()
+    optimized_speeds = np.arange(min_speed, max_speed + 1)
+    optimized_volumes = regression_model.predict(optimized_speeds.reshape(-1, 1))
+
+    # Visualize optimized traffic flow
+    plt.plot(optimized_speeds, optimized_volumes, label=f'Cluster {cluster+1}')
+    plt.scatter(X, y, color='black', alpha=0.5)
+    plt.title('Optimized Traffic Flow')
+    plt.xlabel('Speed (km/h)')
+    plt.ylabel('Volume (vehicles/hour)')
+    plt.legend()
+plt.show()
